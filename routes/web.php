@@ -18,8 +18,8 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
-Route::get('categories/{category:slug}', [PostController::class, 'categories']);
-Route::get('authors/{author:username}', [PostController::class, 'authors']);
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts');
+Route::get('categories/{category:slug}', [PostController::class, 'categories'])->name('categories');
+Route::get('authors/{author:username}', [PostController::class, 'authors'])->name('authors');
 
