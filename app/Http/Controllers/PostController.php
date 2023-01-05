@@ -16,9 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts', [
-            'posts'         => Post::latest('published_at')->get(),
-            'categories'    => Category::all()
+        $posts = Post::latest('published_at');
+        return view('posts.index', [
+            'posts' => $posts->filter(request(['search', 'category', 'author']))->get()
         ]);
     }
     /**
@@ -29,23 +29,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('post', [
-            'post' => $post
-        ]);
-    }
-
-    public function categories(Category $category){
-        return view('posts', [
-            'posts'             => $category->posts,
-            'currentCategory'   => $category,
-            'categories'        => Category::all()
-        ]);
-    }
-
-    public function authors(User $author){
-        return view('posts', [
-            'posts'         => $author->posts->load(['category', 'author']),
-            'categories'    => Category::all()
+        return view('posts.show', [
+            'posts' => $post
         ]);
     }
 }

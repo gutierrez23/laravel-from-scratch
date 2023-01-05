@@ -20,7 +20,7 @@ class PostSeeder extends Seeder
             'name' => 'Fernando Gutierrez'
         ]);
         Post::factory(30)->create([
-            'user_id' => $user->id
+            // 'user_id' => $user->id
         ]);
     }
 }
